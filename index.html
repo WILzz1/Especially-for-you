@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pejuang Ujian, Jokes & Gombalan</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #e0f7fa;
+            transition: background 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        /* Container Utama */
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            z-index: 10;
+        }
+
+        /* Badge Mode */
+        .badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .badge-semangat {
+            background-color: #ffe082;
+            color: #f57f17;
+        }
+
+        .badge-jokes {
+            background-color: #c8e6c9;
+            color: #2e7d32;
+        }
+
+        .badge-gombalan {
+            background-color: #f8bbd0;
+            color: #c2185b;
+        }
+
+        /* Konten Teks */
+        .content-box {
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .text-display {
+            font-size: 1.3rem;
+            color: #333;
+            line-height: 1.6;
+            font-weight: 600;
+        }
+
+        /* Tombol Aksi */
+        .button-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        button {
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, opacity 0.2s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .btn-next {
+            background: #0288d1;
+            color: white;
+        }
+
+        .btn-swap {
+            background: #7b1fa2;
+            color: white;
+        }
+
+        /* Pilihan Background */
+        .bg-picker {
+            margin-top: 25px;
+            border-top: 1px solid #ddd;
+            padding-top: 15px;
+        }
+
+        .bg-picker p {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .color-btns {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .color-dot {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* === ELEMEN ANIMASI (MINION & ULTRAMAN) === */
+
+        /* Minion Berjalan di Bawah */
+        .minion {
+            position: absolute;
+            bottom: 10px;
+            width: 100px;
+            z-index: 5;
+            animation: moveMinion 12s linear infinite;
+        }
+
+        @keyframes moveMinion {
+            0% {
+                left: -120px;
+                transform: scaleX(1);
+            }
+            49% {
+                transform: scaleX(1);
+            }
+            50% {
+                left: calc(100% + 20px);
+                transform: scaleX(-1);
+            }
+            99% {
+                transform: scaleX(-1);
+            }
+            100% {
+                left: -120px;
+                transform: scaleX(1);
+            }
+        }
+
+        /* Ultraman Terbang Melayang */
+        .ultraman {
+            position: absolute;
+            top: 10%;
+            width: 120px;
+            z-index: 5;
+            animation: flyUltraman 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes flyUltraman {
+            0% {
+                right: -150px;
+                top: 10%;
+                transform: rotate(-10deg);
+            }
+            50% {
+                right: 50%;
+                top: 25%;
+                transform: rotate(10deg) scale(1.1);
+            }
+            100% {
+                right: calc(100% + 150px);
+                top: 15%;
+                transform: rotate(-5deg);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Animasi Ultraman -->
+    <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbnEybzIxdndudTRmNHJrbWRsd2hsaWpldXNzZGxsMm16ZXN0czBqbCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/l41K3o5MjiyJVTLHP/giphy.gif" alt="Ultraman" class="ultraman">
+
+    <!-- Animasi Minion -->
+    <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcHJsdzJ3dW5ybHR5cmI2Y2FrcHFiN2IwbndhbjlyNXdva3BscHk1OCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/13AxyjhJSsXCFy/giphy.gif" alt="Minion" class="minion">
+
+    <!-- Main Container -->
+    <div class="container">
+        <div id="badgeMode" class="badge badge-semangat">Mode: Semangat Ujian</div>
+        
+        <div class="content-box">
+            <p id="textContent" class="text-display">Loading...</p>
+        </div>
+
+        <div class="button-group">
+            <button class="btn-next" onclick="getRandomContent()">Acak Kata 🎲</button>
+            <button class="btn-swap" onclick="swapMode()">Swap Mode 🔄</button>
+        </div>
+
+        <!-- Ubah Background -->
+        <div class="bg-picker">
+            <p>Ganti Warna Background Simpel:</p>
+            <div class="color-btns">
+                <div class="color-dot" style="background: #e0f7fa;" onclick="changeBg('#e0f7fa')"></div>
+                <div class="color-dot" style="background: #fff3e0;" onclick="changeBg('#fff3e0')"></div>
+                <div class="color-dot" style="background: #f3e5f5;" onclick="changeBg('#f3e5f5')"></div>
+                <div class="color-dot" style="background: #e8f5e9;" onclick="changeBg('#e8f8e9')"></div>
+                <div class="color-dot" style="background: #263238;" onclick="changeBg('#263238')"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data 15 Kata Semangat Ujian Kuliah
+        const semangatList = [
+            "SKS (Sistem Kebut Semalam) boleh, tapi tidur cukup bukan begadang mba. Bismillah, IPK 4.0! 🎓",
+            "Doa Ibu + Doa saya = Lembar jawaban terisi penuh dengan benar 100%.",
+            "Ga ada soal yang susah karna mba nya ngasal awkoawkoakwoawokoawko",
+            "Jadikan dosen penguji bingung dengan jawaban mu mba"
+        ];
+
+        // Data 15 Jokes Bapak-Bapak
+        const jokesList = [
+            "Kenapa air laut rasanya asin? Soalnya kalau manis nanti semut pada renang ",
+            "Kucing apa yang bisa terbang? Kucing-galan pesawat!",
+            "Awan apa yang bikin seneng? Awan-na be with youuu~ ",
+            "Kenapa HP jaman sekarang tipis-tipis? Kalo tebel nanti disangka kue lapis! ",
+            "Buah apa yang paling manis? Buah-ti nurani.",
+            "Sayur apa yang pinter nyanyi? Kol-play! ",
+            "Kenapa pohon kelapa di depan rumah harus ditebang? Kalo dicabut berat, pak! ",
+            "Bensin campur apa yang paling bikin kaget? Campur petasan!",
+            "Kunci apa yang bikin kaget? Kunci-takan api! ",
+            "Jus apa yang warnanya hitam? Jus-tin Bieber lagi pake baju hitam. ",
+            "Kenapa dinosaurus punah? Soalnya ga pernah mau belajar pas mau ujian! ",
+            "Kenapa orang mati dibungkus kain kafan? Kalau dibungkus daun pisang namanya lontong! ",
+            "Kopi apa yang paling cepet saji? Kopi-paste! ",
+            "Gajah apa yang belalainya pendek? Gajah yang lagi pesek. ",
+            "Sepatu, sepatu apa yang gak bisa dipakai? Sepatu-ju (Setuju)! "
+        ];
+
+        // Data 15 Gombalan Baper
+        const gombalanList = [
+            "Kamu tahu bedanya awan sama kamu? Kalau awan bikin teduh, kalau kamu bikin aku jatuh (cinta). ",
+            "Jam apa yang paling bikin bahagia? Jam-in masa depan bareng kamu. ",
+            "Kayaknya aku butuh Google Maps deh. Soalnya aku baru aja tersesat di hatimu. ",
+            "Panda apa yang paling bikin seneng? Panda-ngin senyum kamu tiap hari. ",
+            "Dulu cita-citaku jadi dokter... Tapi semenjak kenal kamu, cita-citaku berubah cuma pengen bahagiain kamu. ",
+            "Bawang kalau dikupas bikin nangis. Tapi kalau kamu kupas-tikan jadi milikku, aku bakal tersenyum terus. ",
+            "Kamu itu kayak sinyal Wi-Fi, ya? Bikin aku pengen connect terus bawaannya. ",
+            "Aku lagi sakit nih. Tapi kata dokter obatnya cuma satu: ngeliat senyum kamu hari ini. ",
+            "Kopi apa yang rasanya paling manis? Kopi-lih aku jadi pendamping hidupmu. ",
+            "Kipas angin emang bisa bikin adem. Tapi tatapan mata kamu sukses bikin aku deg-degan. ",
+            "Kalau disuruh belajar sejarah aku males. Tapi kalau disuruh belajar mencintaimu, aku siap 24 jam. ",
+            "Tinta apa yang sampai kapan pun nggak akan pernah luntur? Tinta-ku padamu. ",
+            "Rumah apa yang paling nyaman di dunia ini? Rumah tangga kita nanti. ",
+            "Kamu itu pasti pencuri, ya? Soalnya kamu udah berhasil mencuri hatiku tanpa izin. ",
+            "Jalan mundur itu susah. Sama kayak move on dari kamu, susahnya minta ampun"
+        ];
+
+        // State Aplikasi
+        let currentMode = 'semangat'; // 'semangat', 'jokes', atau 'gombalan'
+
+        const textContent = document.getElementById('textContent');
+        const badgeMode = document.getElementById('badgeMode');
+
+        // Fungsi Ambil Kata Acak
+        function getRandomContent() {
+            let list;
+            if (currentMode === 'semangat') {
+                list = semangatList;
+            } else if (currentMode === 'jokes') {
+                list = jokesList;
+            } else {
+                list = gombalanList;
+            }
+
+            const randomIndex = Math.floor(Math.random() * list.length);
+            
+            // Efek animasi sederhana saat berganti teks
+            textContent.style.opacity = 0;
+            setTimeout(() => {
+                textContent.innerText = list[randomIndex];
+                textContent.style.opacity = 1;
+            }, 200);
+        }
+
+        // Fungsi Swap Mode (Berputar dari Semangat -> Jokes -> Gombalan -> kembali lagi)
+        function swapMode() {
+            if (currentMode === 'semangat') {
+                currentMode = 'jokes';
+                badgeMode.innerText = 'Mode: Jokes Bapak-Bapak';
+                badgeMode.className = 'badge badge-jokes';
+            } else if (currentMode === 'jokes') {
+                currentMode = 'gombalan';
+                badgeMode.innerText = 'Mode: Gombalan Baper';
+                badgeMode.className = 'badge badge-gombalan';
+            } else {
+                currentMode = 'semangat';
+                badgeMode.innerText = 'Mode: Semangat Ujian';
+                badgeMode.className = 'badge badge-semangat';
+            }
+            getRandomContent();
+        }
+
+        // Fungsi Ganti Background
+        function changeBg(color) {
+            document.body.style.background = color;
+        }
+
+        // Jalankan pertama kali saat dibuka
+        getRandomContent();
+    </script>
+</body>
+</html>
